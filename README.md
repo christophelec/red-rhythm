@@ -9,7 +9,7 @@ How to use :
 
 Keys :
 
-Left/Right arrow : Previous/Next track
-Up/Down arrow : Increase/decrease volume
-m : Mute/Unmute
-Space : Play/Pause
+* Left/Right arrow : Previous/Next track
+* Up/Down arrow : Increase/decrease volume
+* m : Mute/Unmute
+* Space : Play/Pause
