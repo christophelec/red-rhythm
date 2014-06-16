@@ -10,6 +10,13 @@ k = Key_mapper.new(rb_controller)
 v = Music_view.new(rb_controller)
 init_screen
 logger = Logger.new('log')
+clear_asked = false
+sync = Mutex.new
+
+#Signal handling
+Signal.trap("SIGWINCH") do
+  clear_asked = true
+end
 
 # Makes cursor invisible
 curs_set(0)
@@ -25,23 +32,26 @@ refresh
 # Characters typed are sent immediatly to the program, instead of waiting for
 # a carriage return
 cbreak
-timeout=1000
 
-sync = Mutex.new
-
-controller_thread = Thread.new do
-  sync.lock
+view_thread = Thread.new do
   loop do
-    k.translate(getch)
-    sync.unlock
-    logger.info("Mutex unlocked")
-    sync.lock
+    v.show
+    if clear_asked
+      clear
+      clear_asked = false
+    end
+    Thread.stop
   end
 end
 
+ping_thread = Thread.new do
+  loop do
+    sleep(1)
+    view_thread.wakeup
+  end
+end
 
 loop do
-  v.show
-  sync.lock
-  sync.unlock
+  k.translate(getch)
+  view_thread.wakeup
 end

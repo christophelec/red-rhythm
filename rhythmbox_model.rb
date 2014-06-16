@@ -12,12 +12,16 @@ class Rhythmbox_model
   end
 
   def next
-    @rb_player_iface.Next
+    begin
+      @rb_player_iface.Next
+    rescue
+    end
   end
 
   def prev
-    if !is_stopped?
+    begin
       @rb_player_iface.Previous
+    rescue
     end
   end
 
