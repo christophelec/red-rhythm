@@ -4,7 +4,8 @@ red-rhythm
 Minimalist D-bus client to control rhythmbox from a terminal.
 
 How to use :
-````$ ruby main.rb
+
+    $ ruby main.rb
 
 Keys :
 

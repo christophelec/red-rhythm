@@ -1,4 +1,3 @@
-require_relative './d_bus_access.rb'
 require_relative './key_mapper.rb'
 require_relative './rhythmbox_model.rb'
 require_relative './music_view.rb'
