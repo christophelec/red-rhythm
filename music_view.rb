@@ -7,7 +7,7 @@ class Music_view
   end
 
   def get_track_string
-    @track.title + " - " + @track.album
+    @track.title + " - " + @track.album + " par " + @track.artist
   end
 
   def get_playing_status
